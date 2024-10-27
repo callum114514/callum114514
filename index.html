@@ -1,83 +1,53 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<!-- 
-       　  　▃▆█▇▄▖
-　 　 　 ▟◤▖　　　◥█▎
-   　 ◢◤　 ▐　　　 　▐▉
-　 ▗◤　　　▂　▗▖　　▕█▎
-　◤　▗▅▖◥▄　▀◣　　█▊
-▐　▕▎◥▖◣◤　　　　◢██
-█◣　◥▅█▀　　　　▐██◤
-▐█▙▂　　     　◢██◤
-◥██◣　　　　◢▄◤
- 　　▀██▅▇▀
-
-
-哲学♂ 114514
--->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>横中科技社 - 官方网站</title><!--By LYH 20241027-->
-    <link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href="style.css"><!--EFFECT CANVAS-->
+    <title>倒计时</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: red;
+            font-family: 宋体, sans-serif;
+            font-size: 10em;
+        }
+        #countdown {
+            text-align: center;
+        }
+        .countdown-section {
+            display: inline-flex;
+            color: #00FF00;
+        }
+    </style>
 </head>
-
 <body>
+    <div id="countdown">距离月假仅有 <span class="countdown-section">00</span>天 <span class="countdown-section">00</span>小时 <span class="countdown-section">00</span>分钟 <span class="countdown-section">00</span>秒</div>
 
-    <header>
-	
-        <nav>
-			<a href="#"><img src="main.png" alt="Logo" class="logo"></a>
-            <ul>
-                <li><a href="#home">首页</a></li>
-                <li><a href="#events">社团活动</a></li>
-                <li><a href="#contact">联系我们</a></li>
-            </ul>
-        </nav>
-    </header>
-<canvas id="canvas"></canvas>
-<h1>欢迎来到横中科技社</h1>
-<a class="go" href="#events">😅即刻起步👇</a>
-<script src="E_script.js"></script>
-    <section id="home" class="section">
-        <div class="container">
-            
-            <p>我们致力于推动科技创新，组织各种技术交流和实践活动。</p>
-        </div>
-    </section>
+    <script>
+        function updateCountdown() {
+            const newYear = new Date('November 2, 2024 11:40:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = newYear - now;
 
-    <section id="events" class="section">
-        <div class="container">
-            <h3 style="font-size: 100px;">社团活动</h3>
-            <div class="event">
-                <h3>这是毛胚房</h3>
-                <p>我们的网站还是毛胚房，毛胚房有毛胚很正常把。</p>
-				<p>网站前端的建设欢迎你来参与！</p>
-            </div>
-            <div class="event">
-                <h3>这是毛胚房</h3>
-                <p>我们的网站还是毛胚房，毛胚房有毛胚很正常把。</p>
-            </div>
-            <div class="event">
-                <h3>这是毛胚房</h3>
-                <p>我们的网站还是毛胚房，毛胚房有毛胚很正常把。</p>
-            </div>
-        </div>
-    </section>
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-    <footer id="contact">
-        <div class="container">
-            <p>联系我们</p>
-			<p> 横州市高级中学（茉莉校区）, 第一实验楼, 503室</p>
-			<p> by 2221 LYH</p>
-        </div>
-		<div class="container">
-		<p> © 2022~2024 横州市高级中学 科技社</p>
-		</div>
-    </footer>
-	
-	<!--<script src="script.js"></script>-->
-	
+            document.getElementById('countdown').innerHTML =
+			`距离月假仅有<p></p> <span class="countdown-section">${days}</span>天 <span class="countdown-section">${hours}</span>小时 <span class="countdown-section">${minutes}</span>分钟 <span class="countdown-section">${seconds}</span>秒`;
+
+            if (timeLeft < 0) {
+                document.getElementById('countdown').innerHTML = "放假快乐！"; 
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
