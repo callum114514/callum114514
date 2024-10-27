@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元旦倒计时</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: green;
+            font-family: Arial, sans-serif;
+            font-size: 3em;
+        }
+        #countdown {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">距离元旦还有 00天 00小时 00分钟 00秒</div>
+
+    <script>
+        function updateCountdown() {
+            const newYear = new Date('January 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = newYear - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML =
+                `距离元旦还有 ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+
+            if (timeLeft < 0) {
+                document.getElementById('countdown').innerHTML = "新年快乐！";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+	height: 100%;
+  width: 100%;
+    background-color: rgba(12, 9, 29, 0.8);
+    scroll-behavior: smooth; /* 添加平滑滚动 */
+}
+
+header {
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed; /* 固定导航栏 */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s; /* 平滑背景色过渡 */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+nav .logo {
+    height: 50px;
+	padding: 0px 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.section {
+    padding: 60px 0; /* 调整填充以适应固定导航栏 */
+    text-align: center;
+    background-color: rgba(12, 9, 29, 0.8);
+    margin-bottom: 20px;
+}
+
+.section:nth-child(even) {
+    background-color: rgba(12, 9, 29, 0.68);
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h3 {
+    margin: 0;
+    padding: 10px 0;
+	display: inline-block;
+	padding: 0.3em;
+	font-family: "Megrim", cursive;
+	user-select: none;
+	transform: translate(-50%, -50%);
+	color: rgba(255, 255, 255, 0.68);
+	border: 0.05em solid rgba(255, 255, 255, 0.1);
+	border-radius: 25px;
+	
+}
+.go {
+  display: inline-block;
+  padding: 0.3em;
+  font-family: "Megrim", cursive;
+  position: absolute;
+	font-size: 60px;
+	text-decoration:none;
+  top: 85%;
+  left: 50%;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.68);
+  border: 0.075em solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+}
+
+p {
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.6;
+}
+
+.event {
+    margin: 20px 0;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
