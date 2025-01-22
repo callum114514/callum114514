@@ -1,53 +1,240 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>倒计时</title>
+    <title>横州市高级中学科技社</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            color: red;
-            font-family: 宋体, sans-serif;
-            font-size: 10em;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #589895, #2a5298);
+            color: #fff;
+            overflow-x: hidden;
         }
-        #countdown {
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 400;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            margin-top: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in-out;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .hero button {
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border: none;
+            background-color: #ff5722;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hero button:hover {
+            background-color: #e64a19;
+        }
+        .about {
+            padding: 3rem 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in-out;
+        }
+        .about h2, .events h2, .features h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+			
+			
+        }
+        .about p, .event p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 3rem 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in-out;
+        }
+		.events h2 {
+		overflow-wrap: break-word;
+		}
+        .events {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 3rem 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in-out;
+        }
+        .event {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 1rem;
+            padding: 2rem;
+            width: 300px;
             text-align: center;
         }
-        .countdown-section {
-            display: inline-flex;
-            color: #00FF00;
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 1rem;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+        }
+        .feature h3, .event h3 {
+            margin-bottom: 1rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in-out;
         }
     </style>
 </head>
 <body>
-    <div id="countdown">距离元旦仅有 <span class="countdown-section">00</span>天 <span class="countdown-section">00</span>小时 <span class="countdown-section">00</span>分钟 <span class="countdown-section">00</span>秒</div>
+    <header>
+        <div class="logo">横中科技社</div>
+        <nav>
+            <a href="#about">关于我们</a>
+            <a href="#features">特色活动</a>
+            <a href="#events">活动详情</a>
+            <a href="#contact">联系我们</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero">
+        <h1>欢迎加入横中科技社团</h1>
+        <p>在这里，创新与创意相遇。加入我们，共同探索科技的未来。</p>
+        <button onclick="scrollToAbout()">了解更多</button>
+		
+    </section>
+
+    <section class="features" id="features">
+	<!--<h2>社团活动</h2>-->
+        <div class="feature">
+            <h3>工作坊</h3>
+            <p>参与最新科技趋势和工具的实践课程。</p>
+        </div>
+        <div class="feature">
+            <h3>黑客马拉松</h3>
+            <p>合作与竞争，打造令人惊叹的项目。</p>
+        </div>
+        <div class="feature">
+            <h3>嘉宾讲座</h3>
+            <p>向行业专家学习，获取真实世界的洞察。</p>
+        </div>
+    </section>
+
+    <section class="events" id="events">
+        <!--<h2 style="overflow-wrap: break-word;">活动详情</h2>-->
+        <p style="overflow-wrap: break-word;">每年，科技社团都会组织多种多样的活动，包括但不限于以下内容：</p>
+        <div class="event">
+            <h3>技术分享会</h3>
+            <p>参与最新科技趋势和工具的实践课程。</p>
+        </div>
+        <div class="event">
+            <h3>年度编程大赛</h3>
+            <p>合作与竞争，打造令人惊叹的项目。</p>
+        </div>
+        <div class="event">
+            <h3>年度编程大赛</h3>
+            <p>向行业专家学习，获取真实世界的洞察。</p>
+        </div>
+        <p>具体活动时间与报名方式，请关注我们的官方通知。</p>
+    </section>
+    <section class="about" id="about">
+        <!--<h2>关于我们</h2>-->
+        <p>科技社团是一个以科技创新为核心的学生组织，致力于培养学生的创造力和技术能力。我们的宗旨是为对技术充满热情的学生提供一个学习与交流的平台，共同探索前沿科技，推动技术创新。</p>
+        <p>无论你是对编程感兴趣、对硬件开发充满热情，还是想了解人工智能与机器学习的最新动态，科技社团都欢迎你的加入！</p>
+    </section>
+    <footer id="footer">
+        <p>&copy; 2025 横州市高级中学科技社 All Rights Reserved.</p>
+    </footer>
 
     <script>
-        function updateCountdown() {
-            const newYear = new Date('January 1, 2025 00:00:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = newYear - now;
+        document.addEventListener("DOMContentLoaded", () => {
+            const elements = [
+                document.querySelector(".hero"),
+                document.querySelector(".about"),
+                document.querySelector(".features"),
+                document.querySelector(".events"),
+                document.querySelector("footer")
+            ];
 
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            let options = {
+                threshold: 0.1
+            };
 
-            document.getElementById('countdown').innerHTML =
-			`距离元旦仅有<p></p> <span class="countdown-section">${days}</span>天 <span class="countdown-section">${hours}</span>小时 <span class="countdown-section">${minutes}</span>分钟 <span class="countdown-section">${seconds}</span>秒`;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, options);
 
-            if (timeLeft < 0) {
-                document.getElementById('countdown').innerHTML = "新年快乐！"; 
-            }
+            elements.forEach(el => observer.observe(el));
+        });
+
+        function scrollToAbout() {
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
         }
 
-        setInterval(updateCountdown, 1000);
+        window.addEventListener("scroll", () => {
+            const header = document.querySelector("header");
+            if (window.scrollY > 50) {
+                header.style.background = "rgba(0, 0, 0, 0.9)";
+            } else {
+                header.style.background = "rgba(0, 0, 0, 0.7)";
+            }
+        });
     </script>
 </body>
 </html>
