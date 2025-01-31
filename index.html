@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- 
-ChatGPT写的 原谅我罢
+deepseek写的 原谅我罢
 
        　  　▃▆█▇▄▖
 　 　 　 ▟◤▖　　　◥█▎
@@ -18,242 +18,187 @@ ChatGPT写的 原谅我罢
 
 
  -->
-<html lang="zh">
+
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>横州市高级中学科技社</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>青墨科技社</title>
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(120deg, #589895, #2a5298);
-            color: #fff;
-            overflow-x: hidden;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
         }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.5);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: background 0.3s;
+
+        body {
+            background-color: #1a2f1a;
+            color: #e0e0e0;
         }
+
+        .header {
+            background: linear-gradient(to right, #1a2f1a, #2d4a2d);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
+            width: 120px;
+            filter: drop-shadow(0 0 10px #4CAF50);
+            animation: float 3s ease-in-out infinite;
         }
-        nav a {
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: #2d4a2d;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav a {
             color: #fff;
             text-decoration: none;
+            padding: 1rem 2rem;
             margin: 0 1rem;
-            font-weight: 400;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .hero {
-            text-align: center;
-            padding: 5rem 2rem;
-            margin-top: 60px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-in-out;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .hero button {
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-            border: none;
-            background-color: #ff5722;
-            color: #fff;
             border-radius: 5px;
-            cursor: pointer;
+            transition: all 0.3s;
         }
-        .hero button:hover {
-            background-color: #e64a19;
+
+        .nav a:hover {
+            background-color: #4CAF50;
+            transform: translateY(-3px);
         }
-        .about {
-            padding: 3rem 2rem;
+
+        .page {
+            display: none;
+            padding: 3rem 15%;
+            min-height: 80vh;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-in-out;
+            transform: translateY(20px);
+            transition: all 0.5s;
         }
-        .about h2, .events h2, .features h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-			
-			
+
+        .active-page {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
-        .about p, .event p {
-            line-height: 1.6;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
-        }
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 3rem 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-in-out;
-        }
-		.events h2 {
-		overflow-wrap: break-word;
-		}
-        .events {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 3rem 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-in-out;
-        }
-        .event {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 1rem;
+
+        .card {
+            background: rgba(45, 74, 45, 0.8);
             padding: 2rem;
-            width: 300px;
-            text-align: center;
-        }
-        .feature {
-            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            margin: 1rem;
-            padding: 2rem;
-            width: 300px;
-            text-align: center;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .feature h3, .event h3 {
-            margin-bottom: 1rem;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.7);
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-in-out;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        footer {
+            background-color: #2d4a2d;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">横中科技社</div>
-        <nav>
-            <a href="#about">关于我们</a>
-            <a href="#features">特色活动</a>
-            <a href="#events">活动详情</a>
-            <a href="#contact">联系我们</a>
-        </nav>
+    <header class="header">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" class="logo" alt="科技社Logo">
+        <h1>青墨科技社</h1>
+        <p>探索未来科技 · 创造无限可能</p>
     </header>
 
-    <section class="hero" id="hero">
-        <h1>欢迎加入横中科技社团</h1>
-        <p>在这里，创新与创意相遇。加入我们，共同探索科技的未来。</p>
-        <button onclick="scrollToAbout()">了解更多</button>
-		
+    <nav class="nav">
+        <a href="#" onclick="showPage('home')">首页</a>
+        <a href="#" onclick="showPage('about')">关于我们</a>
+        <a href="#" onclick="showPage('projects')">项目展示</a>
+        <a href="#" onclick="showPage('contact')">联系我们</a>
+    </nav>
+
+    <section id="home" class="page active-page">
+        <div class="card">
+            <h2>欢迎来到未来科技世界</h2>
+            <p>在这里，我们致力于：</p>
+            <ul>
+                <li>人工智能开发与应用</li>
+                <li>物联网创新解决方案</li>
+                <li>机器人设计与编程</li>
+                <li>科技创新赛事培训</li>
+            </ul>
+        </div>
+        <div class="gallery">
+            <img src="https://source.unsplash.com/random/600x400?robot" alt="科技项目1">
+            <img src="https://source.unsplash.com/random/600x400?ai" alt="科技项目2">
+            <img src="https://source.unsplash.com/random/600x400?technology" alt="科技项目3">
+        </div>
     </section>
 
-    <section class="features" id="features">
-	<!--<h2>社团活动</h2>-->
-        <div class="feature">
-            <h3>工作坊</h3>
-            <p>参与最新科技趋势和工具的实践课程。</p>
-        </div>
-        <div class="feature">
-            <h3>黑客马拉松</h3>
-            <p>合作与竞争，打造令人惊叹的项目。</p>
-        </div>
-        <div class="feature">
-            <h3>嘉宾讲座</h3>
-            <p>向行业专家学习，获取真实世界的洞察。</p>
-        </div>
+    <section id="about" class="page">
+        <!-- 类似结构其他页面内容 -->
     </section>
-
-    <section class="events" id="events">
-        <!--<h2 style="overflow-wrap: break-word;">活动详情</h2>-->
-        <p style="overflow-wrap: break-word;">每年，科技社团都会组织多种多样的活动，包括但不限于以下内容：</p>
-        <div class="event">
-            <h3>技术分享会</h3>
-            <p>参与最新科技趋势和工具的实践课程。</p>
-        </div>
-        <div class="event">
-            <h3>年度编程大赛</h3>
-            <p>合作与竞争，打造令人惊叹的项目。</p>
-        </div>
-        <div class="event">
-            <h3>年度编程大赛</h3>
-            <p>向行业专家学习，获取真实世界的洞察。</p>
-        </div>
-        <p>具体活动时间与报名方式，请关注我们的官方通知。</p>
-    </section>
-    <section class="about" id="about">
-        <!--<h2>关于我们</h2>-->
-        <p>科技社团是一个以科技创新为核心的学生组织，致力于培养学生的创造力和技术能力。我们的宗旨是为对技术充满热情的学生提供一个学习与交流的平台，共同探索前沿科技，推动技术创新。</p>
-        <p>无论你是对编程感兴趣、对硬件开发充满热情，还是想了解人工智能与机器学习的最新动态，科技社团都欢迎你的加入！</p>
-    </section>
-    <footer id="footer">
-        <p>&copy; 2025 横州市高级中学科技社 All Rights Reserved.</p>
-    </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const elements = [
-                document.querySelector(".hero"),
-                document.querySelector(".about"),
-                document.querySelector(".features"),
-                document.querySelector(".events"),
-                document.querySelector("footer")
-            ];
-
-            let options = {
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = "translateY(0)";
-                    }
-                });
-            }, options);
-
-            elements.forEach(el => observer.observe(el));
-        });
-
-        function scrollToAbout() {
-            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        // 页面切换功能
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active-page');
+            });
+            document.getElementById(pageId).classList.add('active-page');
         }
 
-        window.addEventListener("scroll", () => {
-            const header = document.querySelector("header");
-            if (window.scrollY > 50) {
-                header.style.background = "rgba(0, 0, 0, 0.9)";
-            } else {
-                header.style.background = "rgba(0, 0, 0, 0.7)";
-            }
+        // 滚动动画
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < window.innerHeight - 100) {
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0)';
+                }
+            });
         });
+
+        // 图片轮播自动切换
+        let currentImage = 0;
+        const galleryImages = document.querySelectorAll('.gallery img');
+        setInterval(() => {
+            galleryImages[currentImage].style.transform = 'scale(1)';
+            currentImage = (currentImage + 1) % galleryImages.length;
+            galleryImages[currentImage].style.transform = 'scale(1.1)';
+        }, 3000);
     </script>
+
+    <footer>
+        <p>© 2023 青墨科技社 · 用代码书写未来</p>
+        <p>联系我们：contact@techclub.com</p>
+    </footer>
 </body>
 </html>
