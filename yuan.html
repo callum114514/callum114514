@@ -22,11 +22,11 @@
     </style>
 </head>
 <body>
-    <div id="countdown">距离元旦还有 00天 00小时 00分钟 00秒</div>
+    <div id="countdown">距离高考仅剩 00天 00小时 00分钟 00秒</div>
 
     <script>
         function updateCountdown() {
-            const newYear = new Date('January 1, 2025 00:00:00').getTime();
+            const newYear = new Date('June 6, 2025 09:00:00').getTime();
             const now = new Date().getTime();
             const timeLeft = newYear - now;
 
@@ -36,7 +36,7 @@
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
             document.getElementById('countdown').innerHTML =
-                `距离元旦还有 ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+                `距离高考还有 ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
 
             if (timeLeft < 0) {
                 document.getElementById('countdown').innerHTML = "新年快乐！";
