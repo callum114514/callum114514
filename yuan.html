@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>元旦倒计时</title>
+    <title>倒计时</title>
     <style>
         body {
             margin: 0;
@@ -12,21 +12,27 @@
             justify-content: center;
             align-items: center;
             background-color: black;
-            color: green;
-            font-family: Arial, sans-serif;
-            font-size: 3em;
+            color: red;
+            font-family: 宋体, sans-serif;
+            font-size: 15em;
+			font-weight: bold;
+			line-height: 1.5;
         }
         #countdown {
             text-align: center;
         }
+        .countdown-section {
+            display: inline-flex;
+            color: #00FF00;
+        }
     </style>
 </head>
 <body>
-    <div id="countdown">距离高考仅剩 00天 00小时 00分钟 00秒</div>
+    <div id="countdown">距离高考仅有 <span class="countdown-section">00</span>天 <span class="countdown-section">00</span>小时 <span class="countdown-section">00</span>分钟 <span class="countdown-section">00</span>秒</div>
 
     <script>
         function updateCountdown() {
-            const newYear = new Date('June 6, 2025 09:00:00').getTime();
+            const newYear = new Date('June 7, 2025 09:00:00').getTime();
             const now = new Date().getTime();
             const timeLeft = newYear - now;
 
@@ -36,10 +42,11 @@
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
             document.getElementById('countdown').innerHTML =
-                `距离高考还有 ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+			`距离高考仅有<p></p> <span class="countdown-section">${days}</span>天<p></p> <span class="countdown-section">${hours}</span>小时 <span class="countdown-section">${minutes}</span>分钟 <span class="countdown-section">${seconds}</span>秒`;
+
 
             if (timeLeft < 0) {
-                document.getElementById('countdown').innerHTML = "新年快乐！";
+                document.getElementById('countdown').innerHTML = "放假快乐！"; 
             }
         }
 
