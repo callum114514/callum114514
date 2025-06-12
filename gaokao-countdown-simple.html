@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高考倒计时</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind主题 - 粉蓝渐变 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6C63FF', // 主色调 - 蓝色
+                        secondary: '#FF6584', // 辅助色 - 粉色
+                        accent: '#FFD166', // 强调色 - 黄色
+                        dark: '#212121', // 深灰色文本
+                        light: '#F5F5F5', // 浅灰色背景
+                        gradient: {
+                            blue: '#6C63FF',
+                            pink: '#FF6584',
+                            lightBlue: '#8983F7',
+                            lightPink: '#FF9AA2',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(108, 99, 255, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+            }
+            .backdrop-blur {
+                backdrop-filter: blur(8px);
+            }
+            .bg-glass {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .animate-pulse-slow {
+                animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+        }
+    </style>
+    
+    <!-- 引入Google字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-light to-gradient-lightPink/20 min-h-screen font-sans text-dark flex flex-col items-center justify-center p-4">
+    <!-- 背景装饰元素 -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-blue/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-pink/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+    </div>
+    
+    <!-- 主要内容 -->
+    <div class="max-w-4xl w-full bg-white/80 backdrop-blur rounded-3xl shadow-xl overflow-hidden">
+        <!-- 头部 -->
+        <div class="bg-gradient-to-r from-gradient-blue to-gradient-pink text-white p-8 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-2">
+                <i class="fa fa-graduation-cap text-2xl"></i>
+                <h1 class="text-2xl md:text-3xl font-bold">高考倒计时</h1>
+            </div>
+            <p class="text-white/80">为梦想而战，每一分每一秒都无比珍贵</p>
+        </div>
+        
+        <!-- 倒计时区域 -->
+        <div class="p-8 md:p-12">
+            <div class="text-center mb-10">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold mb-4">距离高考还剩</h2>
+                <p class="text-dark/60">坚持就是胜利，让我们一起为梦想拼搏！</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center border-t-4 border-gradient-blue">
+                    <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gradient-blue to-gradient-lightBlue text-gradient mb-2" id="days">0</div>
+                    <div class="text-dark/60">天</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center border-t-4 border-gradient-lightBlue">
+                    <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gradient-lightBlue to-gradient-lightPink text-gradient mb-2" id="hours">0</div>
+                    <div class="text-dark/60">时</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center border-t-4 border-gradient-lightPink">
+                    <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gradient-lightPink to-gradient-pink text-gradient mb-2" id="minutes">0</div>
+                    <div class="text-dark/60">分</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center border-t-4 border-gradient-pink">
+                    <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gradient-pink to-gradient-lightPink text-gradient mb-2" id="seconds">0</div>
+                    <div class="text-dark/60">秒</div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <div class="inline-block bg-gradient-blue/10 text-gradient-blue px-6 py-3 rounded-full">
+                    <p class="font-medium">高考日期: <span id="gaokaoDate">2024年6月7日</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 激励语 -->
+        <div class="bg-gradient-to-r from-gradient-blue to-gradient-pink text-white p-8 md:p-12 text-center">
+            <p id="motivationText" class="text-xl md:text-2xl font-medium italic">
+                每一次的努力，都是成功的积累。坚持就是胜利！
+            </p>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="bg-white p-6 text-center text-dark/50 text-sm">
+            <p>© 2024 高考倒计时 | 为梦想而战</p>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // 高考倒计时功能
+        function updateCountdown() {
+            // 获取当前年份
+            const currentYear = new Date().getFullYear();
+            
+            // 设置今年的高考日期（6月7日）
+            const gaokaoDate = new Date(`${currentYear}-06-07T00:00:00`);
+            
+            // 如果今年的高考已过，计算明年的高考日期
+            const now = new Date();
+            if (now > gaokaoDate) {
+                gaokaoDate.setFullYear(currentYear + 1);
+            }
+            
+            // 计算剩余时间
+            const diff = gaokaoDate - now;
+            
+            // 计算天、时、分、秒
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // 更新显示
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+            
+            // 更新高考日期显示
+            const formattedDate = `${gaokaoDate.getFullYear()}年${gaokaoDate.getMonth() + 1}月${gaokaoDate.getDate()}日`;
+            document.getElementById('gaokaoDate').textContent = formattedDate;
+            
+            // 如果高考已过，显示特殊消息
+            if (diff < 0) {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+                document.getElementById('motivationText').textContent = '恭喜你顺利完成高考，期待你的好消息！';
+                clearInterval(countdownInterval);
+            }
+        }
+        
+        // 激励语库
+        const motivationTexts = [
+            "每一次的努力，都是成功的积累。坚持就是胜利！",
+            "高考是人生的一次考验，也是一次机遇。全力以赴，不留遗憾！",
+            "现在的付出，都会是一种沉淀，它们会默默铺路，只为让你成为更好的人。",
+            "成功的路上并不拥挤，因为坚持的人不多。",
+            "你的日积月累，早晚会成为别人的望尘莫及。",
+            "不要在该奋斗的年纪选择安逸，努力过后，你会感谢现在拼搏的自己。",
+            "高考不是终点，而是人生新的起点。勇敢向前，未来可期！",
+            "每一个不曾起舞的日子，都是对生命的辜负。为梦想而努力，每一天都值得！",
+            "你的潜力远比你想象的要大，相信自己，你能做到！",
+            "人生在勤，不索何获。",
+            "努力到无能为力，拼搏到感动自己。",
+            "为了梦想，我们一起加油！"
+        ];
+        
+        // 随机显示激励语
+        function showRandomMotivation() {
+            const randomIndex = Math.floor(Math.random() * motivationTexts.length);
+            document.getElementById('motivationText').textContent = motivationTexts[randomIndex];
+        }
+        
+        // 初始化
+        updateCountdown();
+        showRandomMotivation();
+        
+        // 每秒更新倒计时
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // 每10秒更新激励语
+        setInterval(showRandomMotivation, 10000);
+    </script>
+</body>
+</html>
