@@ -1,25 +1,4 @@
-
 <!DOCTYPE html>
-<!-- 
-DeepSeek+ChatGPT+Grok3写的 原谅我罢
-
-       　  　▃▆█▇▄▖
-　 　 　 ▟◤▖　　　◥█▎
-   　 ◢◤　 ▐　　　 　▐▉
-　 ▗◤　　　▂　▗▖　　▕█▎
-　◤　▗▅▖◥▄　▀◣　　█▊
-▐　▕▎◥▖◣◤　　　　◢██
-█◣　◥▅█▀　　　　▐██◤
-▐█▙▂　　     　◢██◤
-◥██◣　　　　◢▄◤
- 　　▀██▅▇▀
-
-
-114514 ♂
-
-250223 LYH
- -->
-
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -34,28 +13,29 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
         }
 
         body {
-            background-color: #1a2f1a;
-            color: #e0e0e0;
+            background-color: #FDFAE9;
+            color: #333;
         }
 
         .header {
-            background: linear-gradient(to right, #92b3a5, #92b3a5);
+            background: linear-gradient(to right, #5E8F6C, #5E8F6C);
             padding: 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            color: #FDFAE9;
         }
 
         .logo {
             width: 120px;
-            filter: drop-shadow(0 0 10px #92b3a5);
+            filter: drop-shadow(0 0 10px #5E8F6C);
             animation: float 3s ease-in-out infinite;
         }
 
         .nav {
             display: flex;
             justify-content: center;
-            background-color: #92b3a5;
+            background-color: #5E8F6C;
             padding: 1rem;
             position: sticky;
             top: 0;
@@ -63,7 +43,7 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
         }
 
         .nav a {
-            color: #fff;
+            color: #FDFAE9;
             text-decoration: none;
             padding: 1rem 2rem;
             margin: 0 1rem;
@@ -72,7 +52,7 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
         }
 
         .nav a:hover {
-            background-color: #92b3a5;
+            background-color: #4A7A59;
             transform: translateY(-3px);
         }
 
@@ -92,11 +72,12 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
         }
 
         .card {
-            background: rgba(45, 74, 45, 0.8);
+            background: rgba(94, 143, 108, 0.1);
             padding: 2rem;
             border-radius: 10px;
             margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #5E8F6C;
         }
 
         .gallery {
@@ -107,15 +88,62 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
         }
 
         .gallery img {
-            width: 60%;
-            height: 80%;
+            width: 100%;
+            height: 200px;
             object-fit: cover;
             border-radius: 5px;
             transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .gallery img:hover {
             transform: scale(1.05);
+        }
+
+        /* 图片放大模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: translate(-50%, -50%) scale(0.5)}
+            to {transform: translate(-50%, -50%) scale(1)}
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #bbb;
         }
 
         @keyframes float {
@@ -124,10 +152,20 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
         }
 
         footer {
-            background-color: #92b3a5;
+            background-color: #5E8F6C;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
+            color: #FDFAE9;
+        }
+
+        a {
+            color: #5E8F6C;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -139,11 +177,11 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
     </header>
 
     <nav class="nav">
-        <a href="#" onclick="showPage('home')">首页</a>
-        <a href="#" onclick="showPage('about')">关于我们</a>
-        <a href="#" onclick="showPage('projects')">项目展示</a>
-        <a href="https://hengzhong.top/gaokao-countdown-simple.html">高考倒计时</a>
-        <a href="#" onclick="showPage('contact')">联系我们</a>
+        <a href="#" onclick="showPage('home'); return false;">首页</a>
+        <a href="#" onclick="showPage('about'); return false;">关于我们</a>
+        <a href="#" onclick="showPage('projects'); return false;">项目展示</a>
+        <a href="#" onclick="showPage('countdown'); return false;">高考倒计时</a>
+        <a href="#" onclick="showPage('contact'); return false;">联系我们</a>
     </nav>
 
     <section id="home" class="page active-page">
@@ -158,53 +196,67 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
             </ul>
         </div>
         <div class="gallery">
-            <img src="https://hengzhong.top/pic/p1.jpg" alt="科技项目1">
-            <img src="https://hengzhong.top/pic/p2.png" alt="科技项目2">
-            <img src="https://hengzhong.top/pic/p3.jpg" alt="科技项目3">
+            <img src="https://hengzhong.top/pic/p1.jpg"科技项目1" onclick="openModal(this)">
+            <img src="https://hengzhong.top/pic/p2.png" alt="科技项目2" onclick="openModal(this)">
+            <img src="https://hengzhong.top/pic/p4.jpg" onclick="openModal(this)">
         </div>
     </section>
 
-    <section id="about" class="page active-page">
+    <section id="about" class="page">
         <div class="card">
             <h2>关于我们</h2>
             <p>我们是横州市为数不多的科技团体之一</p>
             <p>优势:</p>
             <ul>
                 <li>科技比赛通知</li>
-                <li>可以有的指导老师</li>
-                <li>可以有学校资源支持</li>
-                <li>可以有的一间实验室</li>
+                <li>专业指导老师</li>
+                <li>学校资源支持</li>
+                <li>专用实验室</li>
             </ul>
         </div>
     </section>
-    <section id="contact" class="page active-page">
-        <div class="card">
-            <h2>联系我们</h2>
-            <p>邮箱：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a5f4c554a564f49080a08087a5f4c554a564f49144e554a">[email&#160;protected]</a></p>
-            <p>位置：茉莉校区</p>
-        </div>
-    </section>
-    <section id="projects" class="page active-page">
+
+    <section id="projects" class="page">
         <div class="card">
             <h2>项目展示</h2>
-            <p>优秀的作品会被上传到这里啦</p>
-
-
+            <p>我们的优秀作品展示</p>
         </div>
         <div class="card">
-               <h2>PCB NFC饭卡</h2>
-        <div class="gallery">
-            <img src="https://hengzhong.top/pic/p1.jpg" alt="科技项目1">
-            <img src="https://hengzhong.top/pic/p2.png" alt="科技项目2">
-            <img src="https://hengzhong.top/pic/p4.jpg" alt="科技项目3">
-            </div> <div class="card">
-               <h2>⚠注意：</h2>
-               <p>任何有趣创新的设计都可以投稿哦</p>
+            <h2>PCB NFC饭卡</h2>
+            <div class="gallery">
+                <img src="images/pcb1.jpg" alt="PCB项目1" onclick="openModal(this)">
+                <img src="images/pcb2.jpg" alt="PCB项目2" onclick="openModal(this)">
+            </div>
         </div>
-
     </section>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <section id="countdown" class="page">
+        <div class="card">
+            <h2>高考倒计时</h2>
+            <div id="countdown-timer"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="page">
+        <div class="card">
+            <h2>联系我们</h2>
+            <p>邮箱：<a href="mailto:contact@example.com">contact@example.com</a></p>
+            <p>位置:茉莉校区实验楼6楼</p>
+        </div>
+    </section>
+
+    <!-- 图片放大模态框 -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer>
+        <p>© 2025 横州市高级中学科技社</p>
+        <p>实验楼6楼 科技社活动室</p>
+    </footer>
+
+    <script>
         // 页面切换功能
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
@@ -213,30 +265,52 @@ DeepSeek+ChatGPT+Grok3写的 原谅我罢
             document.getElementById(pageId).classList.add('active-page');
         }
 
-        // 滚动动画
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.card').forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
-                if (cardTop < window.innerHeight - 100) {
-                    card.style.opacity = 1;
-                    card.style.transform = 'translateY(0)';
-                }
-            });
+        // 图片放大功能
+        function openModal(img) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // 高考倒计时功能
+        function updateCountdown() {
+            const now = new Date();
+            const targetDate = new Date(now.getFullYear(), 5, 7); // 6月7日
+            if (now > targetDate) {
+                targetDate.setFullYear(targetDate.getFullYear() + 1);
+            }
+            
+            const diff = targetDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            document.getElementById('countdown-timer').innerHTML = `
+                <p>距离${targetDate.getFullYear()}年高考还有：</p>
+                <h3>${days}天${hours}小时</h3>
+            `;
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCountdown();
+            setInterval(updateCountdown, 3600000); // 每小时更新一次
         });
-
-        // 图片轮播自动切换
-        let currentImage = 0;
-        const galleryImages = document.querySelectorAll('.gallery img');
-        setInterval(() => {
-            galleryImages[currentImage].style.transform = 'scale(1)';
-            currentImage = (currentImage + 1) % galleryImages.length;
-            galleryImages[currentImage].style.transform = 'scale(1.1)';
-        }, 3000);
     </script>
-
-    <footer>
-        <p>© 2025 横州市高级中学科技社</p>
-        <p>实验楼6楼 没有的室 | </p>
-    </footer>
 </body>
 </html>
