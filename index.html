@@ -180,7 +180,7 @@
         <a href="#" onclick="showPage('home'); return false;">首页</a>
         <a href="#" onclick="showPage('about'); return false;">关于我们</a>
         <a href="#" onclick="showPage('projects'); return false;">项目展示</a>
-        <a href="#" onclick="showPage('countdown'); return false;">高考倒计时</a>
+        <a href="https://hengzhong.top/gaokao-countdown-simple.html">高考倒计时</a>
         <a href="#" onclick="showPage('contact'); return false;">联系我们</a>
     </nav>
 
@@ -196,12 +196,12 @@
             </ul>
         </div>
         <div class="gallery">
-            <img src="https://hengzhong.top/pic/p1.jpg"科技项目1" onclick="openModal(this)">
+            <img src="https://hengzhong.top/pic/p1.jpg" alt="科技项目1" onclick="openModal(this)">
             <img src="https://hengzhong.top/pic/p2.png" alt="科技项目2" onclick="openModal(this)">
-            <img src="https://hengzhong.top/pic/p4.jpg" onclick="openModal(this)">
+            <img src="https://hengzhong.top/pic/p4.jpg" alt="科技项目3" onclick="openModal(this)">
         </div>
     </section>
-
+ 
     <section id="about" class="page">
         <div class="card">
             <h2>关于我们</h2>
@@ -287,30 +287,6 @@
                 closeModal();
             }
         }
-
-        // 高考倒计时功能
-        function updateCountdown() {
-            const now = new Date();
-            const targetDate = new Date(now.getFullYear(), 5, 7); // 6月7日
-            if (now > targetDate) {
-                targetDate.setFullYear(targetDate.getFullYear() + 1);
-            }
-            
-            const diff = targetDate - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            
-            document.getElementById('countdown-timer').innerHTML = `
-                <p>距离${targetDate.getFullYear()}年高考还有：</p>
-                <h3>${days}天${hours}小时</h3>
-            `;
-        }
-
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCountdown();
-            setInterval(updateCountdown, 3600000); // 每小时更新一次
-        });
     </script>
 </body>
 </html>
