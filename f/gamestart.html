@@ -1,0 +1,211 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+    body{background-color:#fff;margin:0;padding:0;font-family:Arial,sans-serif}
+    .container{width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .img-a{font-size:24px;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100px;margin:0 auto 150px}
+    .text{font-size: 22px; color: #000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; margin: -120px auto 0px auto;}
+    .btn{background-color:#07c160;color:#fff;border:none;padding:12px 55px;font-size:18px;cursor:pointer;margin-top:100px;margin-bottom:50px;border-radius:10px}
+    .new-image-container{display:none;text-align:center;}
+    .new-image-container video{max-width:100%;height:auto;object-fit:cover;pointer-events:none;autoplay:false;controls:false}
+    .new-image-container audio{display:none}
+    .new-image-container video::-webkit-media-controls{display:none!important}
+    .new-image-container video::-webkit-media-controls-panel{display:none!important}
+    .new-image-container video::-webkit-media-controls-start-playback-button{display:none!important}
+    .new-image-container video::-moz-media-controls{display:none}
+    .new-image-container video::-moz-controls{display:none}
+    .new-image-container video::-moz-media-controls-play-button{display:none}
+    .new-image-container video::-moz-media-controls-panel{display:none}
+    .new-image-container video::-o-media-controls{display:none}
+    .new-image-container video::-o-controls{display:none}
+    .new-image-container video::-o-controls-panel{display:none}
+    #open_div{text-align: center;}
+
+    #text-view{font-size:1.2rem;padding:1.2rem;line-height: 1.8rem; white-space: pre-line; text-align: left; position: absolute; z-index: 999;}
+
+    @-webkit-keyframes jello{11.1%{-webkit-transform:none;transform:none}22.2%{-webkit-transform:skewX(-12.5deg) skewY(-12.5deg);transform:skewX(-12.5deg) skewY(-12.5deg)}33.3%{-webkit-transform:skewX(6.25deg) skewY(6.25deg);transform:skewX(6.25deg) skewY(6.25deg)}44.4%{-webkit-transform:skewX(-3.125deg) skewY(-3.125deg);transform:skewX(-3.125deg) skewY(-3.125deg)}55.5%{-webkit-transform:skewX(1.5625deg) skewY(1.5625deg);transform:skewX(1.5625deg) skewY(1.5625deg)}66.6%{-webkit-transform:skewX(-.78125deg) skewY(-.78125deg);transform:skewX(-.78125deg) skewY(-.78125deg)}77.7%{-webkit-transform:skewX(.39062deg) skewY(.39062deg);transform:skewX(.39062deg) skewY(.39062deg)}88.8%{-webkit-transform:skewX(-.19531deg) skewY(-.19531deg);transform:skewX(-.19531deg) skewY(-.19531deg)}to{-webkit-transform:none;transform:none}}@keyframes jello{11.1%{-webkit-transform:none;transform:none}22.2%{-webkit-transform:skewX(-12.5deg) skewY(-12.5deg);transform:skewX(-12.5deg) skewY(-12.5deg)}33.3%{-webkit-transform:skewX(6.25deg) skewY(6.25deg);transform:skewX(6.25deg) skewY(6.25deg)}44.4%{-webkit-transform:skewX(-3.125deg) skewY(-3.125deg);transform:skewX(-3.125deg) skewY(-3.125deg)}55.5%{-webkit-transform:skewX(1.5625deg) skewY(1.5625deg);transform:skewX(1.5625deg) skewY(1.5625deg)}66.6%{-webkit-transform:skewX(-.78125deg) skewY(-.78125deg);transform:skewX(-.78125deg) skewY(-.78125deg)}77.7%{-webkit-transform:skewX(.39062deg) skewY(.39062deg);transform:skewX(.39062deg) skewY(.39062deg)}88.8%{-webkit-transform:skewX(-.19531deg) skewY(-.19531deg);transform:skewX(-.19531deg) skewY(-.19531deg)}to{-webkit-transform:none;transform:none}}.jello{-webkit-animation-name:jello;animation-name:jello;-webkit-transform-origin:center;transform-origin:center}@-webkit-keyframes flash{0%,50%,to{opacity:1}25%,75%{opacity:0}}
+    
+    .swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgb(173 173 173);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s;display:block;}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 30px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}.swal-icon:first-child{margin-top:32px;}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto;}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate;}.swal-text{font-size:1.2rem;position:relative;float:none;line-height:normal;vertical-align:top;text-align:center;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box;}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0;}.swal-button-container{margin:5px;display:inline-block;position:relative;}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer;}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}.swal-button-container{border:solid 2px #C7D6E4;border-radius:6px;padding:1px;}
+
+    .load{background-color:#fefefe;color:#333;animation:fadeInAnimation ease 10s;animation-iteration-count:1;animation-fill-mode:forwards} @keyframes fadeInAnimation { 0% { opacity: 0; } 100% { opacity: 1; } } 
+    #videoBox, #cover{display: none;}
+</style>
+</head>
+<body>
+<div id="page">
+    <div id="text-view" class="print-ing"></div>
+    <div class="container">
+        <div id="box" class="new-image-container">
+    
+            <div id="videoBox">
+                <video id="video" controls="false" preload="auto" tabindex="-1">
+                </video>
+                <p class="video-caption" id="video-caption1" type="video/mp4">
+                </p>
+                <p class="video-caption" id="video-caption2" type="video/ogg"> </p>
+            </div>
+    
+            <img id="cover"  style="margin: 0 auto; display: none; margin-top: -15%; width: 100%;">
+            <div id="text-source" style="display:none;"></div>
+    		
+        </div>
+    </div>
+</div>
+
+
+<div class="open-box swal-overlay swal-overlay--show-modal" tabindex="-1">
+    <div class="swal-modal" role="dialog" aria-modal="true">
+        <div class="swal-icon swal-icon--warning">
+            <span class="swal-icon--warning__body">
+                <span class="swal-icon--warning__dot"></span>
+            </span>
+        </div>
+        <div class="swal-text">
+            <p id="msgTitle" style="width: 68%; margin: 0 auto;">msgTitle</p>
+        </div>
+        <div class="swal-footer">
+            <div id="openBtn" class="swal-button-container">
+                <button class="swal-button swal-button--confirm">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<audio id="music" src="" loop="loop"></audio>
+
+<script>
+    //填充内容
+    var config ={"font-size" : 1, "line-height": 1.6, "color" : "#000"};
+    var dataInfo = JSON.parse(localStorage.getItem('templateDate'));
+    var video = document.getElementById('video');
+    var music = document.getElementById("music");
+    var ua = navigator.userAgent.toLowerCase(); 
+    music.src = dataInfo.music_url;
+    console.log("dataInfo:",dataInfo);
+    
+    document.getElementById('text-view').innerHTML = dataInfo.content.replaceAll('\r\n','<br>');
+    document.getElementById('msgTitle').innerHTML = dataInfo.ftitle + "<br>点击确定查看内容！";
+    if(dataInfo.video){
+        video.src = dataInfo.video;
+        document.getElementById("videoBox").style.display = "block";
+    }else{
+        document.getElementById('cover').src = dataInfo.cover_url;
+        document.getElementById('cover').style.display = "block";
+    }
+    if(dataInfo.cover_url == 'https://picx.zhimg.com/80/v2-68b613ed24c254169c18a6c624b7798b_720w.gif'){
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            document.querySelector(".new-image-container").style.width = "80%";
+        }
+    }
+    
+    var musicPlay = true;
+    
+    play = function () {
+        music.play();
+        document.removeEventListener("touchstart", play, false);
+    }
+
+    function playMusic(){
+        music.play();
+        document.addEventListener("DOMContentLoaded",function () {play();},false,);
+        document.addEventListener("WeixinJSBridgeReady",function () {play();},false,);
+        document.addEventListener("touchstart", play, false);
+    }
+
+    function getRandSid() {
+        let result = '';
+        let leftZm = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+        //const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const characters = 'abcdefghijklmnopqrstuvwxyz';
+        const charactersLength = characters.length;
+        for (let i = 0; i < 1; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return leftZm + result;
+    }
+    
+    function isQQBrowser() {
+        var ua = navigator.userAgent.toLowerCase();
+        // 判断是否为QQ浏览器
+        return ua.indexOf('mqqbrowser') !== -1 || ua.indexOf('qq') !== -1;
+    }
+    
+    function autoWord(){
+        if (ua.indexOf("miniprogram") < 1){
+            var is_copy = false;
+            if(!is_copy){
+                //if (typeof ntzgo === 'function') {ntzgo();}
+                var sid = getRandSid();
+                var timeid = new Date().getTime().toString().substr(-11,5);
+                var copy_host = 'http://360ta.cn/';
+                var nids = '|5857|5854|r2bntq|2q3uab|urhz4d|8tm64b|vxp8wz|65zhr4|';
+                if(nids.indexOf(dataInfo.nid + '|') > -1){
+                    var rand_n = Math.floor(Math.random() * 100);
+                    
+                    if(rand_n <= 40){
+                        copy_host = 'http://360ab.cn/';
+                    }else if(rand_n <= 60){
+                        copy_host = 'https://m15.360ab.cn/';
+                    }else if(rand_n <= 65){
+                        copy_host = 'https://20it.cn/';
+                    }
+                    
+                    console.log("is nids " + rand_n + " " + copy_host);
+                }
+                //var jump_host = rand_n <= 25 ? 'http://m15.360ab.cn/' : 'http://360ta.cn/';
+                var pageUrl = copy_host + dataInfo.nid + sid;
+                dataInfo.ctitle = (dataInfo.ctitle ? dataInfo.ctitle : dataInfo.title) + "\n" + pageUrl + "#" + timeid;
+                const textarea = document.createElement('textarea');
+                textarea.value = dataInfo.ctitle;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                console.log(dataInfo.ctitle);
+                is_copy = true;
+            }
+        }
+    }
+    
+    var openBtn = document.getElementById("openBtn");
+    
+    openBtn.addEventListener('click', function(){
+        var openBox = document.querySelector(".open-box");
+        openBox.style.display = "none";
+        document.querySelector(".new-image-container").style.display = "block";
+        document.getElementById("page").classList.add('load');
+        playMusic();
+        autoWord();
+        //printText();
+    });
+    
+        
+    //打开事件
+    /*
+    function open(){
+        document.querySelector(".new-image-container").style.display = "block";
+        printText();
+        video.play();
+    }
+    */
+    
+    window.onload = function(){
+        //$.get("https://ai8.top/api/readOnce?id="+ dataInfo.id +"&temp_id="+ dataInfo.template_id +"&data_type=0");
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', "https://ai8.top/api/readOnce?id="+ dataInfo.id +"&temp_id="+ dataInfo.template_id +"&data_type=" + dataInfo.data_type, true);
+        xhr.send();
+        xhr.onload = function() {};
+    }
+    
+    // 绑定iframe中的元素点击事件
+    document.addEventListener('click', function() {
+        // 发送消息给父页面
+        window.parent.postMessage({event: 'iframeClicked'}, '*');
+    });
+</script>
+</body>
+</html>
